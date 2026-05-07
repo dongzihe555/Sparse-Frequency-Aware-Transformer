@@ -1,0 +1,67 @@
+T: 16
+layer: 2
+dim: 256
+patch_size: 16
+mlp_ratio: 4
+flblocks: 4
+
+vth_low_l1: 0.9
+vth_high_l1: 1.1
+vth_ll: 0.9
+vth_hl: 1.0
+vth_lh: 1.0
+vth_hh: 1.2
+
+l2_sparsity_mode: ener_ch
+l2_tau_ll: 0.01
+l2_tau_hl: 0.02
+l2_tau_lh: 0.02
+l2_tau_hh: 0.05
+
+ener_gate_low: 0.4
+ener_gate_high: 0.6
+ener_sigma: 0.2
+ener_tau_E: 1.0
+
+use_freq_compensatory_mlp: true
+freq_experts_ratio: 0.25
+
+data_path: './data'
+dataset: dvsgesture
+use-nda: true
+num_classes: 11
+img_size: 128
+model: swformer_freq_aware
+
+amp: true
+batch_size: 16
+val_batch_size: 16
+cooldown_epochs: 10
+cutmix: 0.0
+distributed: false
+epochs: 200
+experiment: dvsgesture_sparse_m_parallel
+lr: 0.0003
+lr_cycle_limit: 1
+lr_cycle_mul: 1.0
+min_lr: 2.0e-05
+mixup: 0.5
+mixup_mode: batch
+mixup_off_epoch: 0
+mixup_prob: 0.5
+mixup_switch_prob: 0.5
+momentum: 0.9
+opt: adamw
+opt_eps: 1.0e-08
+output_dir: ./logs
+patience_epochs: 10
+resume: ''
+sched: cosine
+seed: 1
+smoothing: 0.1
+start_epoch: 0
+warmup_epochs: 10
+warmup_lr: 1.0e-05
+weight_decay: 0.06
+workers: 4
+log_wandb: false

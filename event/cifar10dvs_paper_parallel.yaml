@@ -1,0 +1,90 @@
+
+model: swformer_freq_aware
+T: 16
+layer: 2
+dim: 256
+patch_size: 16
+mlp_ratio: 4
+flblocks: 4
+
+vth_low_l1: 0.9
+vth_high_l1: 1.1
+vth_ll: 0.9
+vth_hl: 1.0
+vth_lh: 1.0
+vth_hh: 1.2
+
+l2_sparsity_mode: ener_ch
+l2_tau_ll: 0.01
+l2_tau_hl: 0.02
+l2_tau_lh: 0.02
+l2_tau_hh: 0.05
+
+ener_gate_low: 0.4
+ener_gate_high: 0.6
+ener_sigma: 0.2
+ener_tau_E: 1.0
+
+use_freq_compensatory_mlp: true
+skip_base_mlp: false
+freq_experts_ratio: 0.25
+
+data_path: './data'
+dataset: cifar10dvs
+num_classes: 10
+img_size: 128
+
+amp: true
+batch_size: 16
+val_batch_size: 16
+
+distributed: false
+epochs: 105
+experiment: cifar10dvs_paper_parallel
+
+opt: adamw
+lr: 0.0075
+momentum: 0.9
+weight_decay: 0.01
+opt_eps: 1.0e-08
+
+sched: cosine
+warmup_epochs: 10
+warmup_lr: 1.0e-05
+min_lr: 2.0e-05
+decay_epochs: 20
+decay_rate: 0.1
+cooldown_epochs: 10
+patience_epochs: 10
+
+mixup: 0.0
+mixup_mode: batch
+mixup_off_epoch: 0
+mixup_prob: 0.0
+mixup_switch_prob: 0.0
+smoothing: 0.0
+
+aa: null
+color_jitter: 0.0
+reprob: 0.0
+hflip: 0.5
+vflip: 0.0
+cutmix: 0.0
+train_interpolation: random
+scale:
+  - 0.08
+  - 1.0
+ratio:
+  - 1.0
+  - 1.0
+
+seed: 1
+start_epoch: 0
+resume: ''
+workers: 4
+log_interval: 100
+output_dir: ./logs
+log_wandb: false
+
+use_nda: true
+use_tonic: false
